@@ -1,3 +1,6 @@
+#ifndef DLL_HPP
+#define DLL_HPP
+
 #include <iostream>
 #include <chrono>
 #include <string>
@@ -9,13 +12,13 @@ struct Dll{
     Dll* next;
 };
 
-class Linkedlist{
+class DoublyLinkedList{
     private:
-        Dll* head;
+    Dll* head;
     public:
-        Linkedlist(){
-            head = nullptr;
-        }
+    DoublyLinkedList(){
+        head = nullptr;
+    }
 
     void insertFront(int value){
         Dll* newDll = new Dll;
@@ -29,7 +32,7 @@ class Linkedlist{
         Dll* newDll = new Dll;
         newDll->data = value;
         newDll->next = nullptr;
-        
+
         if(head == nullptr){
             head = newDll;
             return;
@@ -41,7 +44,53 @@ class Linkedlist{
         temp->next = newDll;
         newDll->prev = temp;
     }
-
+    void deleteFront(){
+        if(head == nullptr){
+            return;
+        }
+        Dll* temp = head;
+        head = head->next;
+        if(head != nullptr){
+            head->prev = nullptr;
+        }
+        delete temp;
+    }
+    void deleteEnd(){
+        if(head == nullptr){
+            return;
+        }
+        Dll* temp = head;
+        while(temp->next != nullptr){
+            temp = temp->next;
+        }
+        if(temp->prev != nullptr){
+            temp->prev->next = nullptr;
+        } else {
+            head = nullptr;
+        }
+        delete temp;
+    }
+    void delete_at_position(int position){
+        if(head == nullptr || position < 0){
+            return;
+        }
+        Dll* temp = head;
+        for(int i=0; temp != nullptr && i < position; i++){
+            temp = temp->next;
+        }
+        if(temp == nullptr){
+            return;
+        }
+        if(temp->prev != nullptr){
+            temp->prev->next = temp->next;
+        } else {
+            head = temp->next;
+        }
+        if(temp->next != nullptr){
+            temp->next->prev = temp->prev;
+        }
+        delete temp;
+    }
     void rotation(int k){
         if(head == nullptr || k == 0){
             return;
@@ -73,3 +122,4 @@ class Linkedlist{
     }
 };
 
+#endif // DLL_HPP

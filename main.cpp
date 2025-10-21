@@ -1,6 +1,7 @@
 #include <iostream>
 #include "utils/sll.hpp"
 #include "utils/csll.hpp"
+#include "utils/dll.hpp"
 #include "utils/helper.hpp"
 #include <chrono>
 
@@ -140,8 +141,24 @@ int main(void) {
     // Q. A4
 
     cout << "----- Q.A4 -----\n\n";
+
+    cout << "DLL: ";
+    DoublyLinkedList dll_list1;
+    for(int i=1; i<=5; i++) {
+        dll_list1.insertEnd(i);
+    }
+    duration_sum = 0.0;
+    for (int i = 1; i <= 5; i++) {
+        auto start = high_resolution_clock::now();
+        dll_list1.delete_at_position(2);
+        auto stop = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(stop - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
     singleLinkedList list5 = create_sample_list();
 
+    cout << "SLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
@@ -150,6 +167,9 @@ int main(void) {
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    cout << "DLL: ";
+
 
     //Q. A5
 
@@ -207,6 +227,65 @@ int main(void) {
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    // DLL
+    DoublyLinkedList dll_list;
+    for(int i=1; i<=5; i++) {
+        dll_list.insertEnd(i);
+    }
+
+    cout << "DLL: ";
+    duration_sum = 0.0;
+    for (int i = 1; i <= 5; i++) {
+        auto start = high_resolution_clock::now();
+        dll_list.insertFront(30);
+        dll_list.deleteFront();
+        auto stop = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(stop - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    cout << "DLL: ";
+    duration_sum = 0.0;
+    for (int i = 1; i <= 5; i++) {
+        auto start = high_resolution_clock::now();
+        dll_list.insertEnd(40);
+        dll_list.deleteFront();
+        auto stop = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(stop - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    cout << "DLL: ";
+    duration_sum = 0.0;
+    for (int i = 1; i <= 5; i++) {
+        auto start = high_resolution_clock::now();
+        dll_list.insertEnd(50);
+        dll_list.deleteEnd();
+        auto stop = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(stop - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    // Q. A6
+    cout << "----- Q.A6 -----\n\n";
+    int n = 1000;
+    singleLinkedList large_sll;
+    for (int i = 0; i < n; i++) {
+        large_sll.add_node(i);
+    }
+    cout << "SLL: ";
+    cout << "MEMORY USAGE: " << n * sizeof(Node) << " bytes\n";
+
+    cout << "DLL: ";
+    cout << "MEMORY USAGE: " << n * sizeof(Dll) << " bytes\n";
+
+    CSLL large_csll;
+    for (int i = 0; i < n; i++) {
+        large_csll.pushBack(i);
+    }
+    cout << "CSLL: ";
+    cout << "MEMORY USAGE: " << n * sizeof(Node) << " bytes\n";
 
     return 0;
 }
