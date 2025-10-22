@@ -4,13 +4,16 @@
 #include "utils/dll.hpp"
 #include "utils/helper.hpp"
 #include <chrono>
+#include <vector>
 
 using namespace std;
 using namespace std::chrono;
 
+
 int main(void) {
 
     // Q. A1
+    cout << "Part A\n\n";
     cout << "----- Q.A1 -----\n\n";
 
     // (i.)
@@ -271,21 +274,105 @@ int main(void) {
     cout << "----- Q.A6 -----\n\n";
     int n = 1000;
     singleLinkedList large_sll;
+    duration_sum = 0.0;
+    auto start_mem = high_resolution_clock::now();
     for (int i = 0; i < n; i++) {
-        large_sll.add_node(i);
+        large_sll.insert_at_end(i);
     }
-    cout << "SLL: ";
+    auto stop_mem = high_resolution_clock::now();
+    duration_sum += duration_cast<nanoseconds>(stop_mem - start_mem).count();
+    cout << "\nSLL: ";
     cout << "MEMORY USAGE: " << n * sizeof(Node) << " bytes\n";
+    cout << "Time to create list: " << duration_sum << " nanoseconds\n";
 
-    cout << "DLL: ";
+    cout << "\nDLL: ";
     cout << "MEMORY USAGE: " << n * sizeof(Dll) << " bytes\n";
+    duration_sum = 0.0;
+    start_mem = high_resolution_clock::now();
+    DoublyLinkedList large_dll;
+    for (int i = 0; i < n; i++) {
+        large_dll.insertEnd(i);
+    }
+    stop_mem = high_resolution_clock::now();
+    duration_sum += duration_cast<nanoseconds>(stop_mem - start_mem).count();
+    cout << "Time to create list: " << duration_sum << " nanoseconds\n";
 
     CSLL large_csll;
+    duration_sum = 0.0;
+    start_mem = high_resolution_clock::now();
     for (int i = 0; i < n; i++) {
-        large_csll.pushBack(i);
+        large_csll.insert_at_end(i);
     }
-    cout << "CSLL: ";
+    stop_mem = high_resolution_clock::now();
+    duration_sum += duration_cast<nanoseconds>(stop_mem - start_mem).count();
+    cout << "\nCSLL: ";
     cout << "MEMORY USAGE: " << n * sizeof(Node) << " bytes\n";
+    cout << "Time to create list: " << duration_sum << " nanoseconds\n";
 
-    return 0;
+    cout << "\nPart B\n\n";
+    cout << "----- Q.B1 -----\n\n";
+
+
+    cout << "Recent items tray\n";
+
+    singleLinkedList Tray1 = create_sample_list();
+    DoublyLinkedList Tray2;
+
+    for(int i=0; i<5; i++) Tray2.insertFront(i);
+
+    // implement a mixed work load of adding and removing at front
+    duration_sum = 0.0;
+    cout << "SLL: ";
+    for(int i=0; i<5; i++) {
+
+        auto start = high_resolution_clock::now();
+        for(int i=0; i<3; i++) Tray1.insert_at_beginning(i);
+        for(int i=0; i< 4; i++) Tray1.delete_at_beginning();
+        auto end = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(end - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    duration_sum = 0.0;
+    cout << "DLL: ";
+    for(int i=0; i<5; i++) {
+
+        auto start = high_resolution_clock::now();
+        for(int i=0; i<3; i++) Tray2.insertFront(i);
+        for(int i=0; i< 4; i++) Tray2.deleteFront();
+        auto end = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(end - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    cout << "----- Q.B2 -----\n\n";
+
+    duration_sum = 0.0;
+    cout << "SLL: ";
+    for(int i=0; i<5; i++) {
+
+        auto start = high_resolution_clock::now();
+        for(int i=0; i<3; i++) Tray1.insert_at_beginning(i);
+        for(int i=0; i< 4; i++) Tray1.delete_at_beginning();
+        auto end = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(end - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+
+    // implement vector stack
+    vector<int> Tray3;
+    for(int i=0; i<5; i++) Tray3.push_back(i);
+    duration_sum = 0.0;
+    cout << "Vector: ";
+    for(int i=0; i<5; i++) {
+        auto start = high_resolution_clock::now();
+        for(int i=0; i<3; i++) Tray3.push_back(i);
+        for(int i=0; i< 4; i++) Tray3.pop_back();
+        auto end = high_resolution_clock::now();
+        duration_sum += duration_cast<nanoseconds>(end - start).count();
+    }
+    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
+
+    return 0; // code success
 }
