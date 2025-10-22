@@ -26,11 +26,12 @@ int main(void) {
         csll_list1.traverse_back_to_head();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     // (ii.)
-    cout << "SLL: ";
+    cout << "\nSLL: ";
     singleLinkedList list1 = create_sample_list();
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
@@ -38,6 +39,7 @@ int main(void) {
         list1.traverse_and_back_head();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -52,11 +54,12 @@ int main(void) {
         csll_list2.deleteNode(3);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
         csll_list2.pushBack(3);
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "CSLL: ";
+    cout << "\nCSLL: ";
     CSLL csll_list3;
     csll_list3.fill(5);
     for (int i = 1; i <= 5; i++) {
@@ -64,6 +67,7 @@ int main(void) {
         csll_list3.deleteNodeWithoutPrev(4);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
         csll_list3.pushBack(4);
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
@@ -83,26 +87,29 @@ int main(void) {
         list2.rotate_right_n(1);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "SLL: ";
+    cout << "\nSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         list3.rotate_right_n(list3_length/2);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "SLL: ";
+    cout << "\nSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         list4.rotate_right_n(list4_length+3);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -111,33 +118,36 @@ int main(void) {
     csll_list5.fill(5);
     csll_list6.fill(5);
 
-    cout << "CSLL: ";
+    cout << "\nCSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         csll_list4.rotate(1);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "CSLL: ";
+    cout << "\nCSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         csll_list5.rotate(csll_list5.size()/2);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "CSLL: ";
+    cout << "\nCSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         csll_list6.rotate(csll_list6.size()+3);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -156,22 +166,24 @@ int main(void) {
         dll_list1.delete_at_position(2);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     singleLinkedList list5 = create_sample_list();
 
-    cout << "SLL: ";
+    cout << "\nSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         list5.insert_at_position(10, 2);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
-    cout << "DLL: ";
+    cout << "\nDLL: ";
 
 
     //Q. A5
@@ -187,26 +199,28 @@ int main(void) {
         list6.insert_at_beginning(10);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     // with tail
     singleLinkedList_with_tail list7;
     for(int i=0; i<5; i++) list7.add_node(i);
-    cout << "SLL with tail: ";
+    cout << "\nSLL with tail: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
         list7.insert_at_beginning(10);
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     //(ii) insert back and remove back
 
     // no tail
-    cout << "SLL: ";
+    cout << "\nSLL: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
@@ -214,13 +228,14 @@ int main(void) {
         list6.delete_at_end();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     // with tail
     for(int i=0; i<5; i++) list7.add_node(i);
 
-    cout << "SLL: ";
+    cout << "\nSLL with tail: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
@@ -228,6 +243,7 @@ int main(void) {
         list7.delete_at_end();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -237,25 +253,15 @@ int main(void) {
         dll_list.insertEnd(i);
     }
 
-    cout << "DLL: ";
+    cout << "\nDLL with tail: ";
     duration_sum = 0.0;
     for (int i = 1; i <= 5; i++) {
         auto start = high_resolution_clock::now();
-        dll_list.insertFront(30);
+        dll_list.insertFront(40);
         dll_list.deleteFront();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
-    }
-    cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
-
-    cout << "DLL: ";
-    duration_sum = 0.0;
-    for (int i = 1; i <= 5; i++) {
-        auto start = high_resolution_clock::now();
-        dll_list.insertEnd(40);
-        dll_list.deleteFront();
-        auto stop = high_resolution_clock::now();
-        duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -267,6 +273,7 @@ int main(void) {
         dll_list.deleteEnd();
         auto stop = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(stop - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -301,7 +308,7 @@ int main(void) {
     duration_sum = 0.0;
     start_mem = high_resolution_clock::now();
     for (int i = 0; i < n; i++) {
-        large_csll.insert_at_end(i);
+        large_csll.pushBack(i);
     }
     stop_mem = high_resolution_clock::now();
     duration_sum += duration_cast<nanoseconds>(stop_mem - start_mem).count();
@@ -330,11 +337,12 @@ int main(void) {
         for(int i=0; i< 4; i++) Tray1.delete_at_beginning();
         auto end = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(end - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(end - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
     duration_sum = 0.0;
-    cout << "DLL: ";
+    cout << "\nDLL: ";
     for(int i=0; i<5; i++) {
 
         auto start = high_resolution_clock::now();
@@ -342,6 +350,7 @@ int main(void) {
         for(int i=0; i< 4; i++) Tray2.deleteFront();
         auto end = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(end - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(end - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -356,6 +365,7 @@ int main(void) {
         for(int i=0; i< 4; i++) Tray1.delete_at_beginning();
         auto end = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(end - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(end - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
@@ -364,13 +374,14 @@ int main(void) {
     vector<int> Tray3;
     for(int i=0; i<5; i++) Tray3.push_back(i);
     duration_sum = 0.0;
-    cout << "Vector: ";
+    cout << "\nVector: ";
     for(int i=0; i<5; i++) {
         auto start = high_resolution_clock::now();
         for(int i=0; i<3; i++) Tray3.push_back(i);
         for(int i=0; i< 4; i++) Tray3.pop_back();
         auto end = high_resolution_clock::now();
         duration_sum += duration_cast<nanoseconds>(end - start).count();
+        cout << "test " << i << ": " << duration_cast<nanoseconds>(end - start).count() << " nanoseconds\n";
     }
     cout << "Average duration: " << duration_sum / 5 << " nanoseconds\n";
 
